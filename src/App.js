@@ -1,10 +1,19 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/pages/Home/Home';
+import Navigation from './components/Shared/Header/Navigation';
+import PageNotFound from './components/Shared/PageNotFound/PageNotFound';
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to doctors portal</h1>
+     <Navigation></Navigation>
+
+     <Routes>
+       <Route path='/' element={<Home></Home>}></Route>
+       <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
+     </Routes>
+      
     </div>
   );
 }
