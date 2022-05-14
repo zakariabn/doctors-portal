@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div style={{backgroundImage: `url(${heroBgImg})`}} className="hero min-h-[75vh] bg-center bg-cover max-w-screen-2xl bg-no-repeat">
       <div className="hero-content flex-col gap-10 lg:flex-row-reverse">
-        <img src={heroImg} className="max-w-sm lg:max-w-lg rounded-md shadow-2xl" alt="" />
+        <img src={heroImg} className="w-full lg:max-w-lg rounded-md shadow-2xl" alt="" />
         <div className="max-w-[550px]">
           <h1 className="text-5xl font-bold text-accent">Your New Smile Starts Here</h1>
           <p className="py-6 text-accent">
