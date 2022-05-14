@@ -1,5 +1,6 @@
 import React from 'react';
-import Appointment from './Appointment/Appointment';
+import Footer from '../../Shared/Footer/Footer';
+import HomeAppointment from './Appointment/HomeAppointment';
 import Contact from './Contact/Contact';
 import Hero from './Hero/Hero';
 import Info from './Info/Info';
@@ -12,9 +13,10 @@ const Home = () => {
       <Hero></Hero>
       <Info></Info>
       <Services></Services>
-      <Appointment></Appointment>
+      <HomeAppointment></HomeAppointment>
       <Review></Review>
       <Contact></Contact>
+      <Footer></Footer>
     </div>
   );
 };

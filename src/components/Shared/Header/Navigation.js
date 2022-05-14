@@ -14,10 +14,10 @@ const Navigation = () => {
         <CustomLink to="/appointment">Appointment</CustomLink>
       </li>
       <li>
-        <CustomLink to="/reviews">Reviews</CustomLink>
+        <CustomLink to="/home#reviews">Reviews</CustomLink>
       </li>
       <li>
-        <CustomLink to="/contact-us">Contact Us</CustomLink>
+        <CustomLink to="/home#contact-us">Contact Us</CustomLink>
       </li>
       <li>
         <CustomLink to="/login">Login</CustomLink>

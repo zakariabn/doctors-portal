@@ -6,7 +6,7 @@ import people1 from "../../.../../../../asset/images/people1.png";
 
 const Review = () => {
   return (
-    <section className="max-w-screen-xl w-full px-10 mb-14">
+    <section className="max-w-screen-xl w-full px-10 mb-14" id="reviews">
       <div
         style={{ backgroundImage: `url(${quoteBg})` }}
         className="w-full h-[156px] bg-contain text-left bg-no-repeat bg-right">

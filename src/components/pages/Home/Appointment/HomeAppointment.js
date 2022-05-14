@@ -2,7 +2,7 @@ import React from "react";
 import docImg from "../../../../asset/images/doctor.png";
 import appointmentBg from "../../../../asset/images/appointment.png";
 
-const Appointment = () => {
+const HomeAppointment = () => {
   return (
     <section class="hero max-w-screen-xl my-20">
       <div
@@ -27,4 +27,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default HomeAppointment;
