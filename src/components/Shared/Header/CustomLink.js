@@ -8,8 +8,8 @@ const CustomLink = ({ children, to, ...props }) => {
   return (
     <div>
       <Link
-        className={`btn btn-white
-        ${match && "btn-primary"}
+        className={`btn hover:text-white border-none hover:bg-accent
+        ${match ? "btn-accent text-white" : "text-black"}
         `}
         to={to}
         {...props}>

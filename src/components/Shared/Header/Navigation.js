@@ -26,8 +26,8 @@ const Navigation = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="flex justify-center">
+      <div className="navbar bg-base-100 max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -52,8 +52,8 @@ const Navigation = () => {
               {menuItem}
             </ul>
           </div>
-          <a href="/" className="btn btn-ghost normal-case text-xl">
-            Doctors Portal
+          <a href="/" className="text-2xl text-black">
+            <p className="whitespace-nowrap">Doctors Portal</p>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
