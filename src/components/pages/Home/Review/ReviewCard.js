@@ -2,8 +2,8 @@ import React from "react";
 const ReviewCard = ({review, avatar, name, location}) => {
   return (
     <div>
-      <div class="card w-96 bg-base-100 shadow-xl px-10 py-6 ">
-        <div class="mb-6 text-black">
+      <div className="card w-96 bg-base-100 shadow-xl px-10 py-6 ">
+        <div className="mb-6 text-black">
           <p className="">
             {review}
           </p>

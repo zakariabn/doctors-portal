@@ -12,19 +12,19 @@ const Info = () => {
         img={clockIcon}
         title="Opening hours"
         text="Click the button to listen on Spotiwhy app."
-        bgClass="bg-btn-gradient"
+        bgclassName="bg-btn-gradient"
         ></InfoCard>
       <InfoCard
         img={markerIcon}
         title="Visit Our location"
         text="Click the button to listen on Spotiwhy app."
-        bgClass="bg-accent"
+        bgclassName="bg-accent"
         ></InfoCard>
       <InfoCard
         img={phoneIcon}
         title="Contact Us"
         text="Click the button to listen on Spotiwhy app."
-        bgClass="bg-btn-gradient"
+        bgclassName="bg-btn-gradient"
         ></InfoCard>
     </div>
   );

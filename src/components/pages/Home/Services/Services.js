@@ -34,8 +34,8 @@ const Services = () => {
           <figure className="">
             <img src={treatment} alt="" className="rounded-xl w-[1200px]"/>
           </figure>
-          <div class="md:ml-10">
-            <h2 class="text-4xl font-bold text-accent mb-5">Exceptional Dental Care, on Your Terms</h2>
+          <div className="md:ml-10">
+            <h2 className="text-4xl font-bold text-accent mb-5">Exceptional Dental Care, on Your Terms</h2>
             <p className="text-accent">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
@@ -44,8 +44,8 @@ const Services = () => {
               here', making it look like readable English. Many desktop
               publishing packages and web page
             </p>
-            <div class="mt-10">
-              <button class="btn btn-primary bg-btn-gradient text-white font-semibold">Get Started</button>
+            <div className="mt-10">
+              <button className="btn btn-primary bg-btn-gradient text-white font-semibold">Get Started</button>
             </div>
           </div>
         </div>

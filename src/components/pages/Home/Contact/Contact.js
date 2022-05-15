@@ -13,14 +13,14 @@ const Contact = () => {
           <input
             type="text"
             placeholder="Email Address"
-            class="input input-bordered w-full"
+            className="input input-bordered w-full"
           />
           <input
             type="text"
             placeholder="Subject"
-            class="input input-bordered w-full"
+            className="input input-bordered w-full"
           />
-          <textarea class="textarea w-full  mb-5" rows='5' placeholder="Your message"></textarea>
+          <textarea className="textarea w-full  mb-5" rows='5' placeholder="Your message"></textarea>
           <button className="btn bg-btn-gradient text-accent">Submit</button>
         </form>
       </div>
