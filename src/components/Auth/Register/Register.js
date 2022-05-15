@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 
-const Login = () => {
+const Register = () => {
   let navigate = useNavigate();
   let location = useLocation();
 
@@ -18,19 +19,23 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  // email login
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  // email signup
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  function onSubmit(data) {
-    signInWithEmailAndPassword(data.email, data.password);
+  async function onSubmit(data) {
+    await createUserWithEmailAndPassword(data.email, data.password, {
+      sendEmailVerification: true,
+    });
+    await updateProfile({ displayName: data.name });
   }
 
   // Google login
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
 
-  function handelGoogleSignIn() {
+  function handelGoogleSignUp() {
     signInWithGoogle();
   }
 
@@ -52,15 +57,41 @@ const Login = () => {
     return <Loading></Loading>;
   }
 
-
   return (
     <div className="flex h-[80vh] md:h-[70vh] justify-center items-center">
       <div className=" shadow-xl rounded-2xl p-4">
         <div className="card-body">
           <h2 className="card-title justify-center text-black text-2xl mb-5">
-            Login
+            Sign Up
           </h2>
           <form className="text-accent" onSubmit={handleSubmit(onSubmit)}>
+            {/* name input with validation  */}
+            <div className="form-control w-full">
+              <label className="label mb-[-.5rem]">
+                <span className="label-text text-black font-medium">Name</span>
+              </label>
+              <input
+                name="name"
+                type="text"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name is required",
+                  },
+                })}
+                className="input input-bordered w-full max-w-xs border border-gray-400 md:w-[300px]"
+              />
+
+              {/* error message form name */}
+              <label className="label text-orange-600">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
             {/* email input with validation  */}
             <div className="form-control w-full">
               <label className="label mb-[-.5rem]">
@@ -98,7 +129,7 @@ const Login = () => {
             </div>
 
             {/* password input with validation  */}
-            <div className="form-control w-full  mb-2">
+            <div className="form-control w-full">
               <label className="label mb-[-.5rem]">
                 <span className="label-text text-black font-medium">
                   Password
@@ -136,31 +167,33 @@ const Login = () => {
               </label>
             </div>
 
-            <div className="mb-[-1rem]">
+            {/* firebase error showing */}
+
+            <div className="flex flex-col gap-3 mb-2 ">
+              <span className="text-red-500 ml-4">
+                {firebaseError && firebaseError}
+              </span>
+
               <span className="ml-2 hover:cursor-pointer label-text mt-[-.4rem] text-black font-medium hover:text-secondary duration-100">
                 Forgot password?
               </span>
             </div>
 
-            {/* firebase error showing */}
-            <span className="text-red-500 ml-4">
-              {firebaseError && firebaseError}
-            </span>
-
             <div>
               <input
                 type="submit"
-                value="Login"
+                value="Sign UP"
                 className="btn w-full bg-accent text-white text-lg font-thin hover:bg-transparent hover:text-accent"></input>
             </div>
           </form>
+
           <div className="mt-2 text-center text-accent">
             <p className="text-sm">
-              New to doctors portal?{" "}
+              Already have an account?{" "}
               <Link
-                to="/sign-up"
+                to="/login"
                 className="text-secondary hover:text-blue-500 hover:cursor-pointer duration-150">
-                Create new account
+                Please login
               </Link>
             </p>
           </div>
@@ -172,7 +205,7 @@ const Login = () => {
 
           <button
             className="uppercase w-full btn text-accent hover:bg-accent hover:text-white"
-            onClick={handelGoogleSignIn}>
+            onClick={handelGoogleSignUp}>
             Continue with google
           </button>
         </div>
@@ -181,4 +214,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

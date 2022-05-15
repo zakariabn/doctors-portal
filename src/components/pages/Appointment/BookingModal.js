@@ -1,8 +1,10 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
-  console.log(date);
+  const [user, loading, error] = useAuthState(auth);
 
   function handelBooking(e) {
     e.preventDefault();
@@ -14,12 +16,12 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
     const email = e.target.email.value;
 
     const bookingInfo = {
-      date : AppointmentDate,
-      time : time,
-      name : name,
-      phone : phone,
-      email : email
-    }
+      date: AppointmentDate,
+      time: time,
+      name: name,
+      phone: phone,
+      email: email,
+    };
     console.log(bookingInfo);
     setTreatment(null);
   }
@@ -50,8 +52,8 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <select
               name="time"
               className="select select-bordered border-gray-400 w-full max-w-xs">
-              {treatment.slots.map((slot) => (
-                <option key={slot} value={slot}>
+              {treatment.slots.map((slot, index) => (
+                <option key={index} value={slot}>
                   {slot}
                 </option>
               ))}
@@ -60,18 +62,24 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               type="text"
               name="name"
               placeholder="Full Name"
-              className="input input-bordered border text-lg text-accent border-gray-400  w-full max-w-xs"
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              className="input input-bordered border text-lg text-accent border-gray-400 w-full max-w-xs"
+              value={user?.displayName || ""}
+              disabled
+              className="input input-bordered border-none text-lg text-accent disabled:bg-gray-300 disabled:text-accent border-gray-400  w-full max-w-xs"
             />
             <input
               type="email"
               name="email"
               placeholder="Email"
+              value={user?.email || ''}
+              disabled
+              
+              className="input input-bordered border text-lg text-accent border-none disabled:bg-gray-300 disabled:text-accent border-gray-400 w-full max-w-xs"
+            />
+
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone"
               className="input input-bordered border text-lg text-accent border-gray-400 w-full max-w-xs"
             />
             <input

@@ -1,26 +1,49 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 import CustomLink from "./CustomLink";
 
 const Navigation = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  function handelLogout() {
+    signOut(auth);
+    navigate("/home");
+  }
+
   const menuItem = (
     <>
       <li>
         <CustomLink to="/">Home</CustomLink>
       </li>
+
       <li>
         <CustomLink to="/about">About</CustomLink>
       </li>
+
       <li>
         <CustomLink to="/appointment">Appointment</CustomLink>
       </li>
+
       <li>
-        <CustomLink to="/home#reviews">Reviews</CustomLink>
+        <CustomLink to="/reviews">Reviews</CustomLink>
       </li>
+
       <li>
-        <CustomLink to="/home#contact-us">Contact Us</CustomLink>
+        <CustomLink to="/contact-us">Contact Us</CustomLink>
       </li>
+
       <li>
-        <CustomLink to="/login">Login</CustomLink>
+        {!user ? (
+          <CustomLink to="/login">Login</CustomLink>
+        ) : (
+          <label htmlFor="logout" className="text-black border border-accent">
+            Zakaria
+          </label>
+        )}
       </li>
     </>
   );
@@ -47,7 +70,7 @@ const Navigation = () => {
             </label>
             <ul
               tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              className="menu justify-center menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               {/* menu Items*/}
               {menuItem}
             </ul>
@@ -57,11 +80,29 @@ const Navigation = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+          <ul className="menu items-center menu-horizontal p-0">
             {/* menu Items*/}
             {menuItem}
           </ul>
         </div>
+      </div>
+
+      {/* logout modal */}
+      <div className="text-accent">
+        <input type="checkbox" id="logout" className="modal-toggle" />
+        <label htmlFor="logout" className="modal cursor-pointer">
+          <label className="modal-box relative" htmlFor="">
+            <h3 className="text-lg text-center font-bold">Want to logout</h3>
+            <div className="flex justify-center">
+              <label
+                htmlFor="logout"
+                onClick={handelLogout}
+                className="btn mt-10 text-accent hover:border-primary hover:bg-transparent hover:text-secondary duration-200">
+                Log Out
+              </label>
+            </div>
+          </label>
+        </label>
       </div>
     </div>
   );
