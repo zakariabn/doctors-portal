@@ -35,6 +35,7 @@ const Navigation = () => {
       <li>
         <CustomLink to="/contact-us">Contact Us</CustomLink>
       </li>
+      <li>{user && <CustomLink to="/dashboard">Dashboard</CustomLink>}</li>
 
       <li>
         {!user ? (
@@ -49,11 +50,11 @@ const Navigation = () => {
   );
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center">
       <div className="navbar bg-base-100 max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex="0" className="btn btn-ghost lg:hidden">
+            <label tabIndex="0" className="btn btn-ghost text-accent mr-4 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -76,7 +77,7 @@ const Navigation = () => {
             </ul>
           </div>
           <a href="/" className="text-2xl text-black">
-            <p className="whitespace-nowrap">Doctors Portal</p>
+            <p className="whitespace-nowrap text-center">Doctors Portal</p>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -102,6 +103,24 @@ const Navigation = () => {
               </label>
             </div>
           </label>
+        </label>
+      </div>
+
+      <div className="navbar-end w-[10%]">
+        <label htmlFor="dashboard-navigation" className="text-accent drawer-button lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
         </label>
       </div>
     </div>

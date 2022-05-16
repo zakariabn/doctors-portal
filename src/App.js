@@ -1,10 +1,14 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
 import RequireAuth from "./components/Auth/RequireAuth/RequireAuth";
 import About from "./components/pages/About/About";
 import Appointment from "./components/pages/Appointment/Appointment";
+import Dashboard from "./components/pages/Dashboard/Dashboard";
+import MyAppointment from "./components/pages/Dashboard/MyAppointment";
+import MyReviews from "./components/pages/Dashboard/MyReviews";
 import Home from "./components/pages/Home/Home";
 import Footer from "./components/Shared/Footer/Footer";
 import Navigation from "./components/Shared/Header/Navigation";
@@ -23,14 +27,25 @@ function App() {
           path="/appointment"
           element={
             <RequireAuth>
-              <Appointment></Appointment>
+              <Appointment/>
             </RequireAuth>
           }></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard/>
+            </RequireAuth>
+          }>
+            <Route index element={<MyAppointment/>}></Route>
+            <Route path="review" element={<MyReviews/>}></Route>
+          </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/sign-up" element={<Register></Register>}></Route>
 
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
+      <ToastContainer/>
     </div>
   );
 }

@@ -1,9 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 
-const BookingModal = ({ treatment, date, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
   const [user, loading, error] = useAuthState(auth);
 
   function handelBooking(e) {
@@ -17,12 +19,41 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
 
     const bookingInfo = {
       date: AppointmentDate,
+      treatment: treatment.name,
       time: time,
-      name: name,
+      patientName: name,
       phone: phone,
       email: email,
     };
     console.log(bookingInfo);
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          toast.success(
+            `Appointment set at ${time.split("-")[0]} for ${treatment.name}`
+          );
+          console.log(data);
+        }
+        if (!data.success) {
+          toast.warn(
+            `You already have an appointment on ${data?.booking?.date} at ${
+              time.split("-")[0]
+            } for ${data?.booking?.treatment} `
+          );
+          console.log(data);
+        }
+      })
+      .catch((error) => console.dir(error));
+      
+    refetch();
     setTreatment(null);
   }
 
@@ -70,9 +101,8 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               type="email"
               name="email"
               placeholder="Email"
-              value={user?.email || ''}
+              value={user?.email || ""}
               disabled
-              
               className="input input-bordered border text-lg text-accent border-none disabled:bg-gray-300 disabled:text-accent border-gray-400 w-full max-w-xs"
             />
 
