@@ -7,22 +7,24 @@ import useAdmin from "../../../hooks/useAdmin";
 import Loading from "../../Shared/Loading/Loading";
 
 const RequireAdmin = ({ children }) => {
-  const [user, loading] = useAuthState(auth);
-  const [admin] = useAdmin(user);
+  const [user] = useAuthState(auth);
+  const [admin, adminLoading] = useAdmin(user);
 
   let location = useLocation();
 
-  if (loading) {
+  if (adminLoading) {
     return <Loading></Loading>;
   }
 
-  if (!admin) {
+  if (admin) {
+    return children;
+    
+  } else {
     toast.error("You don't have permission to go there", {
       toastId: "adminRequire",
     });
     return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
 
-  return children;
 };
 export default RequireAdmin;

@@ -47,7 +47,7 @@ const MyAppointment = () => {
       <div className="overflow-x-auto">
         <table className="table w-full text-accent">
           <thead>
-            <tr className="text-white">
+            <tr className="text-accent">
               <th>Count</th>
               <th>Name</th>
               <th>Date</th>

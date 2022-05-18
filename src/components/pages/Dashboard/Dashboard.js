@@ -7,6 +7,7 @@ import useAdmin from "../../../hooks/useAdmin";
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
   const [admin] = useAdmin(user);
+  console.log(admin);
 
   return (
     <div>

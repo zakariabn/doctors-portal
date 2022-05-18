@@ -1,30 +1,22 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-
+  content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {
-      backgroundImage: {
-        "btn-gradient": "linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)",
-      },
-    },
+    extend: {},
   },
-  
-  // daisy-ui theme config
   daisyui: {
     themes: [
       {
-        myTheme: {
+        doctortheme: {
           primary: "#0FCFEC",
           secondary: "#19D3AE",
           accent: "#3A4256",
-          "light-gray": "#D4D9E3",
-          while: "#ffffff",
+          // neutral: "#3d4451",
+          "base-100": "#ffffff",
         },
       },
       "dark",
       "cupcake",
     ],
   },
-
   plugins: [require("daisyui")],
-};
+}
