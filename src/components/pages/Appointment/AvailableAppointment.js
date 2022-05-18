@@ -10,22 +10,13 @@ const AvailableAppointment = ({ date }) => {
   const [treatment, setTreatment] = useState(null);
 
   const formattedDate = format(date, "PP");
-  const url = `http://localhost:5000/available?date=${formattedDate}`;
+  const url = `/available?date=${formattedDate}`;
 
   const {data : services, isLoading, refetch} = useQuery(["available", formattedDate], () => fetch(url).then((res) => res.json()));
 
   if (isLoading) {
     return <Loading></Loading>
   }
-
-  // useEffect(() => {
-  // const formattedDate = format(date, "PP");
-  //   const url = `http://localhost:5000/available?date=${formattedDate}`;
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((data) => setServices(data))
-  //     .catch((error) => console.dir(error));
-  // }, [date]);
 
   return (
     <div className="my-14 text-center">

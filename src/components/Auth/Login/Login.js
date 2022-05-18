@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import Loading from "../../Shared/Loading/Loading";
 
 const Login = () => {
@@ -34,13 +35,17 @@ const Login = () => {
     signInWithGoogle();
   }
 
+    // verifying user with jwt token
+    const [token] = useToken(user || googleUser);
+
   // redirection user
   let from = location.state?.from?.pathname || "/";
+  
   useEffect(() => {
-    if (user || googleUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, googleUser, from, navigate]);
+  }, [token, from, navigate]);
 
   // handling firebase error
   let firebaseError;

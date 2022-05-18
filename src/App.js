@@ -3,9 +3,11 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
+import RequireAdmin from "./components/Auth/RequireAdmin/RequireAdmin";
 import RequireAuth from "./components/Auth/RequireAuth/RequireAuth";
 import About from "./components/pages/About/About";
 import Appointment from "./components/pages/Appointment/Appointment";
+import AllUsers from "./components/pages/Dashboard/AllUsers";
 import Dashboard from "./components/pages/Dashboard/Dashboard";
 import MyAppointment from "./components/pages/Dashboard/MyAppointment";
 import MyReviews from "./components/pages/Dashboard/MyReviews";
@@ -39,6 +41,7 @@ function App() {
           }>
             <Route index element={<MyAppointment/>}></Route>
             <Route path="review" element={<MyReviews/>}></Route>
+            <Route path="all-users" element={<RequireAdmin><AllUsers/></RequireAdmin>}></Route>
           </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/sign-up" element={<Register></Register>}></Route>

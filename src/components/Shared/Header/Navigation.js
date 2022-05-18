@@ -12,6 +12,7 @@ const Navigation = () => {
   function handelLogout() {
     signOut(auth);
     navigate("/home");
+    localStorage.removeItem("AccessToken");
   }
 
   const menuItem = (

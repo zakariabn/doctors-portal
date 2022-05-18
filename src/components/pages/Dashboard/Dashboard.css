@@ -1,0 +1,11 @@
+.table-heading > tr > th {
+  background: rgba(148, 163, 184, 0.58) !important;
+}
+input[type="checkbox"] {
+  background: transparent;
+  border: 2px solid gray;
+}
+input[type="checkbox"]:checked {
+  border: none;
+  color: #0fcfec;
+}
