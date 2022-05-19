@@ -12,10 +12,18 @@ const AvailableAppointment = ({ date }) => {
   const formattedDate = format(date, "PP");
   const url = `/available?date=${formattedDate}`;
 
-  const {data : services, isLoading, refetch} = useQuery(["available", formattedDate], () => fetch(url).then((res) => res.json()));
+  const {
+    data: services,
+    isLoading,
+    refetch,
+  } = useQuery(["available", formattedDate], () =>
+    fetch(url).then((res) => res.json())
+  );
+
+  console.log(services);
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   return (

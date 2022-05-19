@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import auth from "../../../firebase.init";
-import Loading from "../../Shared/Loading/Loading";
+import auth from "../../../../firebase.init";
+import Loading from "../../../Shared/Loading/Loading";
 
 const MyAppointment = () => {
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   // console.log(appointments);
 
@@ -44,7 +44,7 @@ const MyAppointment = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto">
+    <div className="overflow-x-auto">
         <table className="table w-full text-accent">
           <thead>
             <tr className="text-accent">

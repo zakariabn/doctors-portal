@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery } from "react-query";
-import Loading from "../../Shared/Loading/Loading";
-import "./Dashboard.css";
-import UserRow from "./UserRow";
+import Loading from "../../../Shared/Loading/Loading";
+import UserRow from "../Users/UserRow"
+
 
 const AllUsers = () => {
   // const [user] = useAuthState();
